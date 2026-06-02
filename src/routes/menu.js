@@ -14,6 +14,17 @@ router.get("/", (req, res) => {
   res.json({ menu: data.menu });
 });
 
+router.get("/search", (req,res) => {
+  const { name } = req.query;
+  if (!name) {
+    return res.status(400).json({error: "lisa parameeter ?name =..."})
+  }
+  const result = data.menu.filter(item =>
+    item.name .toLowerCase().includes(name.toLowerCase())
+  );
+  res.json({results, count: results.length})
+})
+
 // Kõik kategooriad - peab olema ENNE /:id
 router.get("/categories", (req, res) => {
   const categories = [...new Set(data.menu.map((item) => item.category))];

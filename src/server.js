@@ -36,6 +36,15 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/api/stats", (req, res) => {
+  res.json({
+    totalOrders: data.orders.length,
+    totalUsers: data.users.length,
+    totalMenuItems: data.menu.length,
+    end: ENV
+  });
+})
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
