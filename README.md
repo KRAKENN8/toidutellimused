@@ -1,37 +1,57 @@
 # Toidutellimused
 
-<!-- TODO: Kirjelda mis see rakendus on -->
+Toidutellimused on veebirakendus toidu tellimiseks interneti kaudu. Rakendus võimaldab kasutajatel registreeruda, sisse logida, sirvida menüüd ning filtreerida roogasid erinevate kategooriate järgi, et leida sobivaid tooteid ja esitada tellimusi mugavalt veebikeskkonnas.
 
 ## Tehnoloogiad
 
-<!-- TODO: Lisa tehnoloogiad -->
+* JavaScript – rakenduse loogika ja funktsionaalsus
+* HTML – veebilehtede struktuur
+* CSS – kasutajaliidese kujundus
+* Docker – rakenduse käivitamine
 
 ## Keskkondade erinevused
 
 | | Dev | Prod |
 |--|-----|------|
 | Port | 3000 | 3001 |
-| Logid | <!-- TODO --> | <!-- TODO --> |
-| Restart | <!-- TODO --> | <!-- TODO --> |
+| Logid | Logid salvestatakse Dockeri kaudu | Logid salvestatakse Dockeri kaudu |
+| Restart | Taaskäivitatakse kuni käsitsi peatamiseni | Taaskäivitatakse alati automaatselt |
 
 ## Käivitamine
 
 ### Dev keskkond
 
-<!-- TODO: Lisa käsk -->
+Käivitab rakenduse arenduskeskkonnas kasutades Nodemonit, mis taaskäivitab serveri automaatselt failide muutmisel: nodemon src/server.js
 
 ### Prod keskkond
 
-<!-- TODO: Lisa käsk -->
+Käivitab rakenduse tootmiskeskkonnas kasutades Node.js-i ilma automaatse taaskäivitamiseta: node src/server.js
 
 ## Testid
 
-<!-- TODO: Kirjelda kuidas teste käivitada -->
+Testide käivitamiseks käivita käsk: node src/test.js
 
 ## API
 
-<!-- TODO: Dokumenteeri kõik endpointid -->
+### Health check
+
+Serveri staatuse kontrollimiseks kasutatakse endpointi **GET /health**, mis tagastab info selle kohta, kas rakendus töötab korrektselt.
+
+### Kasutajad
+
+Kasutajate haldamiseks on olemas kaks endpointi.
+Uue kasutaja registreerimiseks kasutatakse **POST /api/users/signup**, mille kaudu luuakse uus kasutajakonto.
+Sisselogimiseks kasutatakse **POST /api/users/login**, mis võimaldab kasutajal autentida end süsteemi.
+
+### Menüü
+
+Toidumenüü andmete vaatamiseks kasutatakse endpointi **GET /api/menu**, mis tagastab kogu saadaval oleva menüü info.
+
+### Tellimused
+
+Tellimuse loomiseks kasutatakse endpointi **POST /api/orders**, mille kaudu saab kasutaja esitada uue tellimuse.
+
 
 ## GitHub Actions
 
-<!-- TODO: Selgita mis toimub automaatselt -->
+Kui projektis oleks seadistatud GitHub Actions CI töövoog, siis iga kord kui kood pushitakse GitHubi repositooriumisse, käivituks automaatne protsess, mis seab üles Node.js keskkonna, installib sõltuvused ning käivitab testid, et kontrollida API korrektset toimimist enne muudatuste liitmist põhiharusse.
