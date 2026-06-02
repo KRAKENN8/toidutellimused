@@ -7,25 +7,27 @@ on:
     branches: [ master ]
 
 jobs:
-  test: Automaattestid
-  runs-on: ubuntu-latest
-  steps:
-    - name: Lae kood alla
-    - uses: actions/checkout@v4
+  test:
+    name: Automaattestid
+    runs-on: ubuntu-latest
 
-    - name: Paigalda Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '20'
-    
-    - name: Paigalda sõltuvused
-    run: npm install
+    steps:
+      - name: Lae kood alla
+        uses: actions/checkout@v4
 
-    - name: Käivitame rakenduse
-    run: node src/server.js & 
+      - name: Paigalda Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Oota kuni server käivitub
-    run: sleep 3
+      - name: Paigalda sõltuvused
+        run: npm install
 
-    - name: Käivitame testid
-    run: node *TESTID*
+      - name: Käivita rakendus
+        run: node src/server.js &
+
+      - name: Oota kuni server käivitub
+        run: sleep 3
+
+      - name: Käivita testid
+        run: node src/test.js
