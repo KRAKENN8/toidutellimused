@@ -7,27 +7,9 @@ on:
     branches: [ master ]
 
 jobs:
-  name: Koodi kontroll
-  runs-on: ubuntu-latest
-
   test:
     name: Automaattestid
     runs-on: ubuntu-latest
-    steps:
-      - name: Lae kood alla
-        uses: actions/checkout@v4
-
-      - name: Paigalda Node.js
-        uses: actions/setup-node@v4
-        with: 
-          node-version: '20'
-
-      - name: Paigalda sõltuvused
-        run: npm install
-
-      - name: Kontrolli ühtaksi vigu
-        run: node --check src/server.js src/routes/users.js src/routes/menu.js src/routes/order.js
-
 
     steps:
       - name: Lae kood alla
@@ -40,6 +22,9 @@ jobs:
 
       - name: Paigalda sõltuvused
         run: npm install
+
+      - name: Kontrolli ühtaksi vigu
+        run: node --check src/server.js src/routes/users.js src/routes/menu.js src/routes/order.js
 
       - name: Käivita rakendus
         run: node src/server.js &
