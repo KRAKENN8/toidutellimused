@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Lae kood alla
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Ehita dev image
         run: docker compose --profile dev build
